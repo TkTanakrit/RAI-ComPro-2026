@@ -1,81 +1,39 @@
 #include <stdio.h>
 
-#define SIZE 5
+int main() {
+    int arr[5];
+    int *ptr, *p;
+    int i, j, temp;
 
-void read_numbers(int *array, int size)
-{
-    int *ptr;
-    int *end;
+    printf("Enter 5 integers: ");
 
-    ptr = array;
-    end = array + size;
-    while (ptr < end)
-    {
-        scanf("%d", ptr);
-        ptr++;
+    ptr = arr;
+    for (i = 0; i < 5; i++) {
+        scanf("%d", ptr + i);
     }
-}
 
-void swap(int *x, int *y)
-{
-    int tmp;
+    
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4 - i; j++) {
+            p = arr + j;
 
-    tmp = *x;
-    *x = *y;
-    *y = tmp;
-}
-
-void bubble_sort(int *array, int size)
-{
-    int *ptr;
-    int *last;
-    int swapped;
-
-    last = array + size - 1;
-    while (last > array)
-    {
-        swapped = 0;
-        ptr = array;
-        while (ptr < last)
-        {
-            if (*ptr > *(ptr + 1))
-            {
-                swap(ptr, ptr + 1);
-                swapped = 1;
+            if (*p < *(p + 1)) {
+                temp = *p;
+                *p = *(p + 1);
+                *(p + 1) = temp;
             }
-            ptr++;
         }
-        if (!swapped)
-            break;
-        last--;
     }
-}
 
-void print_array(int *array, int size)
-{
-    int *ptr;
-    int *end;
+    printf("Sorted descending: ");
 
-    ptr = array;
-    end = array + size;
-    while (ptr < end)
-    {
-        printf("%d", *ptr);
-        if (ptr + 1 < end)
-            printf(" ");
+    ptr = arr;
+    while (ptr < arr + 5) {
+        printf("%d ", *ptr);
         ptr++;
     }
+
     printf("\n");
-}
 
-int main(void)
-{
-    int array[SIZE];
-
-    printf("Enter %d integers: ", SIZE);
-    read_numbers(array, SIZE);
-    printf("Sorted: ");
-    bubble_sort(array, SIZE);
-    print_array(array, SIZE);
-    return (0);
+    return 0;
 }

@@ -2,26 +2,28 @@
 
 int sum_array(int *array, int size)
 {
-    int sum;
-    int *ptr;
-    int *end;
+    int sum = 0;
+    int *ptr = array;
+    int *end = array + size;
 
-    sum = 0;
-    ptr = array;
-    end = array + size;
     while (ptr < end)
     {
-        sum += *ptr;
+        if (*ptr % 2 == 0)
+        {
+            sum += *ptr;
+        }
         ptr++;
     }
-    return (sum);
+
+    return sum;
 }
 
 int main(void)
 {
     int size = 6;
-    int array[] = { 3, 1, 2, 4, 5, 6 };
+    int array[] = {3, 1, 2, 4, 5, 6};
 
-    printf("The sum of array is: %d\n", sum_array(array, size));
-    return (0);
+    printf("The sum of even numbers is: %d\n", sum_array(array, size));
+
+    return 0;
 }
